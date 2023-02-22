@@ -1,0 +1,11 @@
+1. Why did you choose the tools, libraries, and language you used for the coding exercise?
+
+I chose the libraries dplyr, lubridate, and readr for this project. I chose dplyr because it makes it very easy to group and arrange different sections of a data frame. I chose the lubridate library to manage dates, and the readr library to read the csv file. I chose the language R because it is great for reading in data and managing data frames. I could've also used a language like python as they are both great for working with data and manipulating/wrangling data.
+
+2. What are the advantages and disadvantages of your solution?
+
+The advantages of my solution are that it works as inteded and it correctly returns the players' point balances as intended. It is efficient and easy to understand as well. The disadvantages of the solution are that the timestamps need to be in the same format every time. The solution is also not fully optimized and there is probably a faster solution with using a HashSet to store the names of the payers and to access them.
+
+3. What has been a favorite school/personal project thus far? What about it challenged you?
+
+A favorite school or personal project so far has been creating my biggest video game, Secrets of the Lost Tomb. This is a 3D aventure/puzzle-themed video game made with Unreal Engine. I worked extensively on the backend development using C++ and unreal engine's visual scripting feature (blueprints). The project is a full-fledged video game with multiple levels, cinematics, and a storyline centered around an agent exploring a lost tomb. The project can be found on STEAM at https://store.steampowered.com/app/1709060/Secrets_of_the_Lost_Tomb/ . The most difficult aspect of this project was teaching myself how to work with multiplayer in Unreal Engine using Listen Servers. I spent countless hours watching tutorials, reading documentation, and asking hundreds of questions on the technicalities of multiplayer such as multiplayer replication and setting up servers. Another difficult aspect was working with features such as Save Games and STEAM installscripts. I had to learn a lot from scratch and was primarily self-taught throughout the process, and exploring a powerful engine like Unreal Engine was incredibly rewarding but also dauting at first. 

@@ -1,0 +1,73 @@
+---
+title: "practice"
+output: html_document
+date: "2023-02-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(lubridate)
+library(dplyr)
+
+spendpoints= function(total, csvname){
+    data = read_csv(csvname)
+    datachange = data%>%mutate(timestamp=as.POSIXct( timestamp, format = "%y/%m/%d %H:%M:%S",tz = "GMT"), finalpoints = 0)%>%arrange(timestamp)
+    
+
+    currbank=total
+    orderedpointsvector =as.vector(datachange$points)
+    
+    for(x in 1:length(orderedpointsvector)){
+      currspender=as.character(datachange[x, "payer"])
+      #print(currspender)
+      totalforperson=0
+      for(y in (x-1):1){
+        #print(y)
+        if(as.character(datachange[y,"payer"])==currspender){
+          totalforperson=totalforperson+datachange[y, "finalpoints"]
+          break
+        }
+      }
+
+
+      if(currbank>orderedpointsvector[x]){
+        datachange[x,"finalpoints"]=totalforperson
+        currbank=currbank-orderedpointsvector[x]
+      }
+      else{
+        datachange[x,"finalpoints"]=totalforperson+(orderedpointsvector[x]-currbank)
+        currbank=0
+      }
+      
+    }
+    datachange=datachange%>%group_by(payer)%>%filter(timestamp==max(timestamp))%>%distinct
+    datachange=datachange%>%select(payer, finalpoints)
+    print(datachange)
+  
+}
+
+
+spendpoints(5000, "transactions.csv")
+
+```
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
